@@ -1,9 +1,27 @@
 ManaBar local development
 
+Supported platform: macOS 13 or later on Apple Silicon (arm64) only.
+
 Build: ./scripts/build.sh
 Checks: ./scripts/check.sh
 Signing regression: ./scripts/check-signing.sh
 Run: .build/ManaBar.app/Contents/MacOS/ManaBar --show-panel
+
+npm beta distribution
+
+Checks: npm test
+Package: npm run pack
+Login: npm login --auth-type=web --userconfig "$PWD/.build/npm-user.npmrc"
+Publish: npm run publish:beta
+
+The package command builds and verifies .build/mana-bar-<version>.tgz. Its staging
+directory contains only the prebuilt arm64 app, CLI, package README, and licenses.
+The root package is private to prevent accidentally publishing development files;
+only the verified staging archive is public. There are no install lifecycle scripts.
+The original concept is preserved in docs/CONCEPT.md; the npm README is scripts/npm-README.md.
+The npm login file is kept under the Git-ignored .build/ directory. Never commit it.
+Beta builds use the local development signature and are not Apple-notarized; macOS
+may warn about or block their launch. Version 0.1.0-beta.1 contains app version 0.1.0.
 
 The build reuses a local self-signed code-signing certificate in .manabar-signing/.
 Its designated requirement binds both the certificate fingerprint and app identifier.

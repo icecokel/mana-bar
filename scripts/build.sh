@@ -6,7 +6,7 @@ mkdir -p .build/module-cache .build/ManaBar.app/Contents/MacOS .build/ManaBar.ap
 export CLANG_MODULE_CACHE_PATH="$PWD/.build/module-cache"
 export SWIFT_MODULECACHE_PATH="$PWD/.build/module-cache"
 
-swiftc -swift-version 6 -target "$(uname -m)-apple-macosx13.0" -module-cache-path .build/module-cache \
+swiftc -swift-version 6 -target arm64-apple-macosx13.0 -module-cache-path .build/module-cache \
   -framework AppKit -framework Security \
   Sources/*.swift -o .build/ManaBar.app/Contents/MacOS/ManaBar
 

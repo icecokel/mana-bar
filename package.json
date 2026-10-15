@@ -1,0 +1,37 @@
+{
+  "name": "mana-bar",
+  "version": "0.1.0-beta.1",
+  "description": "Claude Code and Codex usage in a dark fantasy macOS menu bar.",
+  "private": true,
+  "license": "MIT",
+  "author": "Icecoke",
+  "bin": {
+    "mana-bar": "bin/mana-bar.mjs"
+  },
+  "files": ["bin/", "app/", "LICENSE", "THIRD_PARTY_NOTICES.txt"],
+  "os": ["darwin"],
+  "cpu": ["arm64"],
+  "engines": {
+    "node": ">=22"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/icecokel/mana-bar.git"
+  },
+  "bugs": {
+    "url": "https://github.com/icecokel/mana-bar/issues"
+  },
+  "scripts": {
+    "build": "./scripts/build.sh",
+    "test": "./scripts/check.sh && node --test Tests/npm-cli.test.mjs",
+    "test:cli": "node --test Tests/npm-cli.test.mjs",
+    "pack": "./scripts/package-npm.sh",
+    "check:package": "node scripts/check-npm-package.mjs",
+    "publish:beta": "npm publish \".build/$npm_package_name-$npm_package_version.tgz\" --tag beta --access public --userconfig .build/npm-user.npmrc"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/",
+    "tag": "beta"
+  }
+}
