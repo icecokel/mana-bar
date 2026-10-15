@@ -1,0 +1,32 @@
+ManaBar local development
+
+Build: ./scripts/build.sh
+Checks: ./scripts/check.sh
+Signing regression: ./scripts/check-signing.sh
+Run: .build/ManaBar.app/Contents/MacOS/ManaBar --show-panel
+
+The build reuses a local self-signed code-signing certificate in .manabar-signing/.
+Its designated requirement binds both the certificate fingerprint and app identifier.
+The private signing keychain is outside the System/login keychain paths and is not
+added to the user's search list. No global trust setting is installed.
+
+Keep .manabar-signing/ across clean builds. It is ignored by Git, uses owner-only
+permissions, and contains a private signing key and its local password. Keep any
+backup private. Losing/replacing it creates a new app identity and requires another
+macOS access grant. These files are never included in ManaBar.app.
+
+Access to Claude Code-credentials requires approval in the macOS prompt. Some prompts
+only offer Allow; do not assume an Always Allow button is available. Subsequent builds
+retain the designated requirement, but macOS can also identify self-signed code by
+its changing CDHash for partition checks. A rebuild can therefore still need a new
+grant. The synthetic ACL regression does not prove that a foreign Claude item will
+retain its grant. Claude Code can also replace its own credential item/ACL, and
+revoked access or a locked keychain can require user action again.
+
+Claude credentials are reused in process memory for at most 30 minutes and only
+before their reported expiry. Explicit Connect reloads credentials. HTTP 401 clears
+the matching token; network/server errors preserve it. Background reads never open
+an approval dialog. Tokens are not written to project files.
+
+This certificate is for local development only. Public distribution still needs
+Developer ID signing and notarization.

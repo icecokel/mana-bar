@@ -1,0 +1,22 @@
+ManaBar interface artwork
+
+Source: RPG Game UI by Wyrmheart
+Original page: https://opengameart.org/content/rpg-game-ui/
+License: Creative Commons Zero (CC0 1.0 Universal)
+https://creativecommons.org/publicdomain/zero/1.0/
+
+ManaBar uses selected pieces from interface.psd and muestra-final.png.
+The pieces were recomposed and recolored for ManaBar's compact interface.
+
+Bundled fonts
+
+Cinzel by Natanael Gama / NDISCOVER
+Source: https://raw.githubusercontent.com/google/fonts/3dd78844021e948ceb633d1dcee3f7885561b5d9/ofl/cinzel/Cinzel%5Bwght%5D.ttf
+Official family: https://github.com/NDISCOVER/Cinzel
+File: Assets/Fonts/Cinzel-Variable.ttf (variable; SemiBold uses weight 600)
+License: SIL Open Font License 1.1; full text and copyright in Assets/Fonts/OFL-Cinzel.txt
+
+Pretendard by Kil Hyung-jin / orioncactus
+Source: https://github.com/orioncactus/pretendard/tree/7aeb0698819be2b4097dae8ec8fe6a795e5cf3ae/packages/pretendard/dist/public/static
+Files: Assets/Fonts/Pretendard-Regular.otf, Assets/Fonts/Pretendard-SemiBold.otf
+License: SIL Open Font License 1.1; full text and copyright in Assets/Fonts/OFL-Pretendard.txt
