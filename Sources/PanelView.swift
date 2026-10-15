@@ -5,7 +5,7 @@ private func text(_ value: String, size: CGFloat = 12, color: NSColor = Palette.
                   serif: Bool = false) -> NSTextField {
     let label = NSTextField(labelWithString: value)
     label.font = (serif ? PanelFont.heading : .body).at(size)
-    label.textColor = color
+    label.textColor = serif ? Palette.gold : color
     label.lineBreakMode = .byTruncatingTail
     label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
     return label
@@ -88,7 +88,7 @@ final class ActionButton: NSButton {
         shadow.shadowOffset = NSSize(width: 0, height: -1)
         let label = NSAttributedString(string: title, attributes: [
             .font: font ?? PanelFont.amount.at(12),
-            .foregroundColor: isEnabled ? Palette.text : Palette.secondary.withAlphaComponent(0.5),
+            .foregroundColor: isEnabled ? Palette.gold : Palette.secondary.withAlphaComponent(0.5),
             .shadow: shadow
         ])
         label.draw(at: NSPoint(x: bounds.midX - label.size().width / 2,
@@ -140,7 +140,7 @@ final class PanelView: NSView {
 
         let title = text("MANABAR", size: 14, serif: true)
         title.attributedStringValue = NSAttributedString(string: "MANABAR", attributes: [
-            .font: title.font!, .foregroundColor: Palette.text, .kern: 1.4
+            .font: title.font!, .foregroundColor: Palette.gold, .kern: 1.4
         ])
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
@@ -221,7 +221,7 @@ final class PanelView: NSView {
 
         if let representative = state.representative {
             let scope = text(state.isStale ? "\(representative.label) · 마지막 값" : representative.label,
-                             color: state.isStale ? .systemOrange : Palette.secondary)
+                             color: state.isStale ? Palette.error : Palette.text)
             scope.alignment = .center
             scope.toolTip = state.isStale ? state.error ?? "갱신이 필요합니다." : nil
             add(scope, to: column)
@@ -239,7 +239,7 @@ final class PanelView: NSView {
         } else {
             let message = state.isLoading ? "사용량을 가져오는 중…"
                 : state.error ?? (provider == .claude ? "Claude Code 로그인 후 연결" : "Codex 로그인 확인 필요")
-            let status = text(message, color: state.error == nil ? Palette.secondary : .systemOrange)
+            let status = text(message, color: state.error == nil ? Palette.secondary : Palette.error)
             status.alignment = .center
             status.toolTip = message
             status.maximumNumberOfLines = 2

@@ -3,8 +3,10 @@ import AppKit
 @MainActor
 enum Palette {
     static let background = NSColor(srgbRed: 14 / 255, green: 15 / 255, blue: 13 / 255, alpha: 1)
-    static let text = NSColor(srgbRed: 220 / 255, green: 212 / 255, blue: 190 / 255, alpha: 1)
-    static let secondary = NSColor(srgbRed: 183 / 255, green: 180 / 255, blue: 166 / 255, alpha: 1)
+    static let gold = NSColor(srgbRed: 199 / 255, green: 178 / 255, blue: 124 / 255, alpha: 1)
+    static let text = NSColor(srgbRed: 215 / 255, green: 210 / 255, blue: 200 / 255, alpha: 1)
+    static let secondary = NSColor(srgbRed: 163 / 255, green: 157 / 255, blue: 147 / 255, alpha: 1)
+    static let error = NSColor(srgbRed: 206 / 255, green: 118 / 255, blue: 109 / 255, alpha: 1)
     static let line = NSColor(srgbRed: 73 / 255, green: 65 / 255, blue: 55 / 255, alpha: 1)
     static let metal = NSColor(srgbRed: 113 / 255, green: 100 / 255, blue: 83 / 255, alpha: 1)
 
@@ -90,7 +92,7 @@ final class ResourceOrb: NSView {
         shadow.shadowOffset = NSSize(width: 0, height: -1)
         let label = NSAttributedString(string: percent.map { "\(Int($0.rounded()))%" } ?? "—", attributes: [
             .font: PanelFont.amount.at(18),
-            .foregroundColor: NSColor(white: 0.97, alpha: 1), .shadow: shadow,
+            .foregroundColor: Palette.text, .shadow: shadow,
         ])
         let size = label.size()
         label.draw(at: NSPoint(x: interior.midX - size.width / 2, y: interior.midY - size.height / 2))
